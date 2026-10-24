@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JALYN — gas flares from space, priced in tenge</title>
+  <meta name="description" content="Satellite monitoring of gas flares: volume, money lost in tenge, CO₂, and the utilization technology that pays back.">
+  <link rel="stylesheet" href="static/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="flame" aria-hidden="true"></span>
+      <div>
+        <div class="brand-name">JALYN</div>
+        <div class="brand-tag">We see every gas flare from space and put a price on it.</div>
+      </div>
+    </div>
+    <div class="controls">
+      <span id="modeBadge" class="badge badge-demo">loading…</span>
+      <label class="select">
+        <span>Observation window</span>
+        <select id="daysSelect">
+          <option value="30">30 nights</option>
+          <option value="60" selected>60 nights</option>
+          <option value="90">90 nights</option>
+        </select>
+      </label>
+      <button id="methodBtn" class="btn ghost">Method &amp; assumptions</button>
+    </div>
+  </header>
+
+  <section class="kpis" id="kpis">
+    <div class="kpi"><span class="kpi-label">Persistent flares</span><b id="kpiSites">—</b><span class="kpi-sub">seen on ≥35% of nights</span></div>
+    <div class="kpi"><span class="kpi-label">Gas in flares</span><b id="kpiGas">—</b><span class="kpi-sub">million m³ per year, estimate</span></div>
+    <div class="kpi accent"><span class="kpi-label">Money burned</span><b id="kpiValue">—</b><span class="kpi-sub">₸ billion per year, as methanol</span></div>
+    <div class="kpi"><span class="kpi-label">Emissions</span><b id="kpiCo2">—</b><span class="kpi-sub">thousand t CO₂-eq per year</span></div>
+  </section>
+
+  <main class="layout">
+    <div id="map" class="map" role="region" aria-label="Flare map"></div>
+
+    <aside class="panel">
+      <div id="listView">
+        <div class="panel-head">
+          <h2>Flares by value</h2>
+          <span id="listCount" class="muted"></span>
+        </div>
+        <div id="siteList" class="site-list"></div>
+      </div>
+
+      <div id="detailView" class="hidden">
+        <button id="backBtn" class="btn link">← All flares</button>
+        <div class="detail-head">
+          <h2 id="dName"></h2>
+          <div id="dRegion" class="muted"></div>
+        </div>
+        <div class="detail-grid">
+          <div><span class="muted">Gas, m³ / year</span><b id="dGas"></b></div>
+          <div><span class="muted">Methanol, t / year</span><b id="dMeth"></b></div>
+          <div class="accent-text"><span class="muted">Potential, ₸ / year</span><b id="dValue"></b></div>
+          <div><span class="muted">CO₂-eq, t / year</span><b id="dCo2"></b></div>
+        </div>
+        <div class="persist">
+          <div class="persist-row"><span>Persistence</span><span id="dPersistText"></span></div>
+          <div class="bar"><div id="dPersistBar" class="bar-fill"></div></div>
+          <div class="muted small" id="dFrp"></div>
+        </div>
+        <div class="actions">
+          <button id="techBtn" class="btn primary">Match a technology</button>
+          <a id="reportBtn" class="btn" target="_blank" rel="noopener">Utilization program (PDF)</a>
+          <button id="subBtn" class="btn ghost">Subscribe · ₸250,000 / month</button>
+        </div>
+        <div id="techList" class="tech-list hidden"></div>
+        <form id="subForm" class="sub-form hidden">
+          <input name="company" placeholder="Company" required minlength="2">
+          <input name="email" type="email" placeholder="Work e-mail" required>
+          <button class="btn primary" type="submit">Start monitoring</button>
+          <p class="muted small">Monthly site monitoring, a quarterly report and vendor matching. Saved to the server database.</p>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    <span>Data: NASA FIRMS (VIIRS NRT) · Method as in the World Bank Global Gas Flaring Tracker · CO₂ factor 2.57 kg/m³ (GGFR 2026)</span>
+    <span id="generatedAt" class="muted"></span>
+  </footer>
+
+  <div id="methodModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close" id="methodClose" aria-label="Close">×</button>
+      <h3>How we see flares</h3>
+      <p>VIIRS satellites (Suomi NPP, NOAA-20/21) record heat sources on the ground every night. A wildfire lasts a few days and moves; a flare burns in the same spot for months. We take the detections for the chosen window, put them on a 0.015° grid (~1.5 km) and keep the cells that light up on at least 35% of nights.</p>
+      <h3>How we estimate volume</h3>
+      <p>The satellite measures radiated power (FRP, MW). Radiation is roughly a quarter of a flare's total heat, so thermal power = FRP ÷ 0.25. Dividing by the heating value of 36 MJ/m³ gives m³ per second, then m³ per year adjusted for persistence. This is a screening estimate; the operator's flow meter is what calibrates it.</p>
+      <h3>Money and CO₂</h3>
+      <p>Methanol: 1,100 m³ of gas per tonne, ₸250,000 per tonne (import parity). Electricity: 3.5 kWh per m³ at ₸25 per kWh. CO₂-eq: 2.57 kg per m³ from the World Bank report (167 bcm → 429 Mt in 2025). All prices are our assumptions and live in <code>app/economics.py</code>.</p>
+      <div id="assumptions" class="assumptions"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="static/vendor/leaflet/leaflet.js"></script>
+  <script src="static/static-fallback.js"></script>
+  <script src="static/app.js"></script>
+</body>
+</html>
