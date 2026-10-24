@@ -1,0 +1,54 @@
+[
+  {
+    "id": "modular-methanol",
+    "name": "Modular methanol synthesis",
+    "short": "Containerized gas-to-methanol unit next to the flare (as Rise Reforming, YC S26)",
+    "min_m3_per_year": 5000000,
+    "max_m3_per_year": 60000000,
+    "capex_kzt_per_m3_year": 580,
+    "opex_kzt_per_m3": 68,
+    "revenue_kzt_per_m3": 227,
+    "product": "methanol — the hydrate inhibitor and drilling-fluid component that oil companies currently import",
+    "assumption": "CAPEX ≈ ₸3.2 bn per 5,000 t/year module (≈5.5 M m³/year); methanol ₸250,000/t; 1,100 m³ of gas per tonne. Our assumption.",
+    "vendor_example": "Rise Reforming (YC S26) — modular reforming of biogas and associated gas into DME and methanol"
+  },
+  {
+    "id": "gas-to-power",
+    "name": "Gas-engine power plant",
+    "short": "Gas burns in an engine-generator; electricity goes to the field or the grid",
+    "min_m3_per_year": 1000000,
+    "max_m3_per_year": 30000000,
+    "capex_kzt_per_m3_year": 225,
+    "opex_kzt_per_m3": 15,
+    "revenue_kzt_per_m3": 87,
+    "product": "electricity, 3.5 kWh per m³ (replaces diesel generators and coal grid power)",
+    "assumption": "CAPEX ≈ $1,000/kW at 7,500 h/year; tariff ₸25/kWh; 35% efficiency. Our assumption. Needs a grid connection or on-site demand.",
+    "vendor_example": "Standard gas gensets (Jenbacher, Caterpillar, Chinese equivalents)"
+  },
+  {
+    "id": "mini-lng",
+    "name": "Mini-LNG / CNG",
+    "short": "Liquefy or compress, truck to filling stations and boiler houses",
+    "min_m3_per_year": 10000000,
+    "max_m3_per_year": 150000000,
+    "capex_kzt_per_m3_year": 350,
+    "opex_kzt_per_m3": 20,
+    "revenue_kzt_per_m3": 70,
+    "product": "vehicle and boiler fuel",
+    "assumption": "wholesale fuel-gas price ₸70/m³; CAPEX benchmark for 10–50 M m³/year units. Our assumption.",
+    "vendor_example": "Mini-LNG modules (Galileo Technologies, Cryostar, Chinese equivalents)"
+  },
+  {
+    "id": "reinjection",
+    "name": "Reinjection into the reservoir",
+    "short": "Gas is compressed and pumped back underground — no emissions, no revenue",
+    "min_m3_per_year": 20000000,
+    "max_m3_per_year": 500000000,
+    "capex_kzt_per_m3_year": 150,
+    "opex_kzt_per_m3": 8,
+    "revenue_kzt_per_m3": 0,
+    "product": "compliance only (Zero Routine Flaring 2030), reservoir pressure support",
+    "assumption": "compressor-station CAPEX benchmark. Our assumption. Shown for comparison as 'compliance without income'.",
+    "vendor_example": "Compressor stations (Ariel, Siemens Energy)"
+  }
+]

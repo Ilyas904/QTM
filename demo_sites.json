@@ -1,0 +1,138 @@
+{
+  "_comment": "DEMO DATA. Synthetic points placed in Kazakhstan's oil-producing regions with plausible FRP and persistence values. They are NOT real measurements and are not tied to any specific field or company. With FIRMS_MAP_KEY set, the app replaces them with real NASA FIRMS detections.",
+  "nights_total": 60,
+  "sites": [
+    {
+      "id": "D-01",
+      "name": "Flare Mangystau 01",
+      "region": "Mangystau region",
+      "lat": 43.61,
+      "lon": 52.93,
+      "nights_detected": 57,
+      "frp_mean_mw": 6.2,
+      "frp_max_mw": 11.0,
+      "detections": 113
+    },
+    {
+      "id": "D-02",
+      "name": "Flare Mangystau 02",
+      "region": "Mangystau region",
+      "lat": 44.92,
+      "lon": 52.04,
+      "nights_detected": 52,
+      "frp_mean_mw": 3.1,
+      "frp_max_mw": 5.9,
+      "detections": 98
+    },
+    {
+      "id": "D-03",
+      "name": "Flare Mangystau 03",
+      "region": "Mangystau region",
+      "lat": 45.31,
+      "lon": 51.72,
+      "nights_detected": 44,
+      "frp_mean_mw": 1.6,
+      "frp_max_mw": 3.9,
+      "detections": 80
+    },
+    {
+      "id": "D-04",
+      "name": "Flare Atyrau 01",
+      "region": "Atyrau region",
+      "lat": 46.42,
+      "lon": 53.21,
+      "nights_detected": 59,
+      "frp_mean_mw": 11.3,
+      "frp_max_mw": 19.6,
+      "detections": 121
+    },
+    {
+      "id": "D-05",
+      "name": "Flare Atyrau 02",
+      "region": "Atyrau region",
+      "lat": 47.08,
+      "lon": 52.41,
+      "nights_detected": 48,
+      "frp_mean_mw": 4.4,
+      "frp_max_mw": 7.8,
+      "detections": 90
+    },
+    {
+      "id": "D-06",
+      "name": "Flare Atyrau 03",
+      "region": "Atyrau region",
+      "lat": 46.88,
+      "lon": 51.64,
+      "nights_detected": 38,
+      "frp_mean_mw": 1.2,
+      "frp_max_mw": 2.6,
+      "detections": 61
+    },
+    {
+      "id": "D-07",
+      "name": "Flare Aktobe 01",
+      "region": "Aktobe region",
+      "lat": 48.27,
+      "lon": 57.58,
+      "nights_detected": 55,
+      "frp_mean_mw": 4.8,
+      "frp_max_mw": 8.9,
+      "detections": 104
+    },
+    {
+      "id": "D-08",
+      "name": "Flare Aktobe 02",
+      "region": "Aktobe region",
+      "lat": 47.91,
+      "lon": 57.12,
+      "nights_detected": 41,
+      "frp_mean_mw": 2.3,
+      "frp_max_mw": 4.6,
+      "detections": 72
+    },
+    {
+      "id": "D-09",
+      "name": "Flare Kyzylorda 01",
+      "region": "Kyzylorda region",
+      "lat": 46.31,
+      "lon": 65.42,
+      "nights_detected": 53,
+      "frp_mean_mw": 3.6,
+      "frp_max_mw": 6.9,
+      "detections": 95
+    },
+    {
+      "id": "D-10",
+      "name": "Flare Kyzylorda 02",
+      "region": "Kyzylorda region",
+      "lat": 45.84,
+      "lon": 64.93,
+      "nights_detected": 36,
+      "frp_mean_mw": 1.0,
+      "frp_max_mw": 2.2,
+      "detections": 58
+    },
+    {
+      "id": "D-11",
+      "name": "Flare West KZ 01",
+      "region": "West Kazakhstan region",
+      "lat": 51.28,
+      "lon": 53.31,
+      "nights_detected": 58,
+      "frp_mean_mw": 7.9,
+      "frp_max_mw": 14.2,
+      "detections": 117
+    },
+    {
+      "id": "D-12",
+      "name": "Flare Atyrau 04",
+      "region": "Atyrau region",
+      "lat": 47.52,
+      "lon": 54.07,
+      "nights_detected": 45,
+      "frp_mean_mw": 2.7,
+      "frp_max_mw": 5.3,
+      "detections": 84
+    }
+  ]
+}
